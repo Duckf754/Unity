@@ -1,226 +1,340 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Convert a 360° panorama to a cubemap with Vayomni Cut Txt">
-  <title>Vayomni Cut Txt - Panorama to Cubemap Converter</title>
-  <style>
-    :root {
-      --primary-color: #4a6bff;
-      --secondary-color: #f8f9fa;
-      --text-color: #333;
-      --border-color: #ddd;
-      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      color: var(--text-color);
-      background-color: #f5f5f5;
-    }
-    
-    .container {
-      max-width: 900px;
-      margin: 2em auto;
-      padding: 2em;
-      background: white;
-      border-radius: 8px;
-      box-shadow: var(--shadow);
-    }
-    
-    header {
-      text-align: center;
-      margin-bottom: 2em;
-      padding-bottom: 1em;
-      border-bottom: 1px solid var(--border-color);
-    }
-    
-    h1 {
-      color: var(--primary-color);
-      margin-bottom: 0.5em;
-    }
-    
-    h2 {
-      color: var(--primary-color);
-      margin-top: 1.5em;
-      font-size: 1.5em;
-    }
-    
-    .brand {
-      font-weight: bold;
-      color: var(--primary-color);
-      font-size: 1.2em;
-    }
-    
-    section {
-      margin-bottom: 2em;
-    }
-    
-    .settings > * {
-      margin-top: 1em;
-      margin-bottom: 1em;
-    }
-    
-    #cubemap {
-      width: 100%;
-      min-height: 500px;
-      position: relative;
-      border: 1px solid var(--border-color);
-      background: var(--secondary-color);
-      margin-top: 1em;
-      border-radius: 4px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      padding: 1em;
-      box-sizing: border-box;
-    }
-    
-    input[type="file"], input[type="number"] {
-      padding: 0.5em;
-      border: 1px solid var(--border-color);
-      border-radius: 4px;
-    }
-    
-    fieldset {
-      border: 1px solid var(--border-color);
-      border-radius: 4px;
-      padding: 1em;
-      margin-top: 1em;
-    }
-    
-    legend {
-      padding: 0 0.5em;
-      font-weight: bold;
-      color: var(--primary-color);
-    }
-    
-    label {
-      display: block;
-      margin: 0.5em 0;
-    }
-    
-    button, input[type="radio"], input[type="checkbox"] {
-      margin-right: 0.5em;
-    }
-    
-    ul {
-      padding-left: 1.5em;
-    }
-    
-    footer {
-      text-align: center;
-      margin-top: 2em;
-      padding-top: 1em;
-      border-top: 1px solid var(--border-color);
-      font-size: 0.9em;
-      color: #666;
-    }
-    
-    #generating {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 1.2em;
-      color: var(--primary-color);
-    }
-    
-    .cube-face {
-      margin: 0.5em;
-      border: 1px solid var(--border-color);
-      box-shadow: var(--shadow);
-      transition: transform 0.2s;
-    }
-    
-    .cube-face:hover {
-      transform: scale(1.02);
-      cursor: pointer;
-    }
-    
-    .btn {
-      background-color: var(--primary-color);
-      color: white;
-      border: none;
-      padding: 0.6em 1.2em;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 1em;
-      transition: background-color 0.3s;
-    }
-    
-    .btn:hover {
-      background-color: #3a5bef;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Serene Coffe — Tempat Nyaman untuk Santai</title>
+<meta name="description" content="Serene Coffe — tempat nyaman untuk santai dan ngobrol bersama teman. Kopi, snack, dan suasana hangat menanti kamu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --primary:#3C2415;--primary-light:#6F4E37;--accent:#C4A882;
+  --cream:#F5E6D3;--bg:#FFF8F0;--white:#FFFFFF;--text:#2D1810;
+  --text-light:#7A6555;--shadow:0 4px 24px rgba(60,36,21,.10);
+  --shadow-lg:0 8px 40px rgba(60,36,21,.15);--radius:16px;--radius-sm:10px;
+}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+h1,h2,h3{font-family:'Playfair Display',serif;font-weight:700}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;width:100%;background:rgba(255,248,240,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);z-index:100;border-bottom:1px solid rgba(196,168,130,.2);transition:box-shadow .3s}
+.nav.scrolled{box-shadow:var(--shadow)}
+.nav-inner{max-width:1100px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:var(--primary)}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{font-size:.85rem;font-weight:500;color:var(--text-light);transition:color .3s}
+.nav-links a:hover{color:var(--primary)}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:4px}
+.nav-toggle span{display:block;width:22px;height:2px;background:var(--primary);margin:5px 0;transition:.3s}
+@media(max-width:768px){
+  .nav-links{display:none;position:absolute;top:100%;left:0;width:100%;background:rgba(255,248,240,.97);backdrop-filter:blur(16px);flex-direction:column;padding:16px 20px;gap:16px;border-bottom:1px solid rgba(196,168,130,.2)}
+  .nav-links.open{display:flex}
+  .nav-toggle{display:block}
+}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 20px 80px;position:relative;background:linear-gradient(135deg,var(--bg) 0%,var(--cream) 50%,rgba(196,168,130,.3) 100%);overflow:hidden}
+.hero::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(196,168,130,.25) 0%,transparent 70%);border-radius:50%;animation:float 8s ease-in-out infinite}
+.hero::after{content:'';position:absolute;bottom:-80px;left:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(111,78,55,.12) 0%,transparent 70%);border-radius:50%;animation:float 10s ease-in-out infinite reverse}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-30px)}}
+.hero-badge{display:inline-block;background:rgba(60,36,21,.08);color:var(--primary-light);font-size:.75rem;font-weight:600;padding:6px 16px;border-radius:50px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-size:clamp(2.5rem,7vw,4.5rem);color:var(--primary);line-height:1.1;margin-bottom:16px}
+.hero h1 span{color:var(--accent)}
+.hero p{font-size:clamp(1rem,2.5vw,1.2rem);color:var(--text-light);max-width:480px;margin:0 auto 36px;font-weight:300}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:50px;font-size:.9rem;font-weight:600;transition:all .3s ease;cursor:pointer;border:none}
+.btn-primary{background:var(--primary);color:var(--white);box-shadow:0 4px 20px rgba(60,36,21,.25)}
+.btn-primary:hover{background:var(--primary-light);transform:translateY(-2px);box-shadow:0 6px 28px rgba(60,36,21,.3)}
+.btn-outline{background:transparent;color:var(--primary);border:2px solid var(--accent)}
+.btn-outline:hover{background:var(--accent);color:var(--white);transform:translateY(-2px)}
+
+/* SECTIONS */
+.section{padding:80px 20px}
+.section-header{text-align:center;margin-bottom:48px}
+.section-header .label{display:inline-block;font-size:.7rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.section-header h2{font-size:clamp(1.8rem,4vw,2.5rem);color:var(--primary);margin-bottom:12px}
+.section-header p{color:var(--text-light);max-width:500px;margin:0 auto;font-size:.95rem}
+.container{max-width:1100px;margin:0 auto}
+
+/* GALLERY */
+.gallery-section{background:var(--cream)}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.gallery-item{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:1;cursor:pointer}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.gallery-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(60,36,21,.4) 0%,transparent 50%);opacity:0;transition:opacity .3s}
+.gallery-item:hover img{transform:scale(1.08)}
+.gallery-item:hover::after{opacity:1}
+.gallery-item:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+@media(max-width:600px){
+  .gallery-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .gallery-item:first-child{grid-column:span 2;grid-row:span 1;aspect-ratio:16/9}
+}
+
+/* MENU */
+.menu-section{background:var(--bg)}
+.menu-tabs{display:flex;justify-content:center;gap:10px;margin-bottom:36px;flex-wrap:wrap}
+.menu-tab{padding:10px 24px;border-radius:50px;border:2px solid var(--cream);background:transparent;color:var(--text-light);font-size:.85rem;font-weight:500;cursor:pointer;transition:.3s;font-family:'Inter',sans-serif}
+.menu-tab.active,.menu-tab:hover{background:var(--primary);color:var(--white);border-color:var(--primary)}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.menu-card{background:var(--white);border-radius:var(--radius);padding:24px;display:flex;align-items:center;gap:16px;box-shadow:var(--shadow);transition:all .3s ease;border:1px solid rgba(196,168,130,.15)}
+.menu-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.menu-icon{width:52px;height:52px;border-radius:var(--radius-sm);background:var(--cream);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+.menu-info h3{font-size:1rem;color:var(--primary);margin-bottom:4px;font-family:'Inter',sans-serif;font-weight:600}
+.menu-info p{font-size:.8rem;color:var(--text-light)}
+.menu-price{margin-left:auto;font-weight:700;color:var(--primary-light);font-size:1rem;white-space:nowrap}
+.menu-card[data-cat]{display:flex}
+.menu-card.hidden{display:none}
+
+/* INFO */
+.info-section{background:var(--cream)}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.info-card{background:var(--white);border-radius:var(--radius);padding:32px;text-align:center;box-shadow:var(--shadow);transition:transform .3s}
+.info-card:hover{transform:translateY(-4px)}
+.info-card .icon{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-light));display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:1.4rem;color:var(--white)}
+.info-card h3{font-size:1.05rem;color:var(--primary);margin-bottom:10px}
+.info-card p{font-size:.88rem;color:var(--text-light);line-height:1.7}
+
+/* MAP */
+.map-section{background:var(--bg)}
+.map-wrapper{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-lg);border:3px solid var(--cream)}
+.map-wrapper iframe{width:100%;height:350px;border:0}
+
+/* CTA */
+.cta-section{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-light) 100%);text-align:center;padding:80px 20px;position:relative;overflow:hidden}
+.cta-section::before{content:'☕';position:absolute;font-size:12rem;opacity:.04;top:50%;left:50%;transform:translate(-50%,-50%)}
+.cta-section h2{color:var(--white);font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:12px}
+.cta-section p{color:rgba(255,255,255,.75);margin-bottom:32px;font-size:1rem}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-white{background:var(--white);color:var(--primary);box-shadow:0 4px 20px rgba(0,0,0,.15)}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.2)}
+.btn-wa{background:#25D366;color:var(--white);box-shadow:0 4px 20px rgba(37,211,102,.3)}
+.btn-wa:hover{background:#1fb855;transform:translateY(-2px)}
+
+/* FOOTER */
+.footer{background:var(--primary);color:rgba(255,255,255,.6);text-align:center;padding:28px 20px;font-size:.82rem}
+.footer span{color:var(--accent)}
+
+/* STICKY WA */
+.sticky-wa{position:fixed;bottom:24px;right:24px;z-index:99;width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.7rem;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:all .3s;cursor:pointer;border:none;animation:pulse 2s infinite}
+.sticky-wa:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(37,211,102,.5)}
+@keyframes pulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.4)}50%{box-shadow:0 4px 30px rgba(37,211,102,.6),0 0 0 12px rgba(37,211,102,.1)}}
+
+/* ANIMATIONS */
+.fade-up{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--cream)}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px}
+</style>
 </head>
-
 <body>
-  <div class="container">
-    <header>
-      <h1>Panorama to Cubemap Converter</h1>
-      <p class="brand">Vayomni Cut Txt</p>
-      <p>Convert a 360° panorama to six cube faces with ease</p>
-    </header>
 
-    <main>
-      <section>
-        <h2>Upload Panoramic Image</h2>
-        <label>Choose your panoramic image: 
-          <input id="imageInput" type="file" accept="image/*">
-        </label>
-        <button class="btn" id="uploadBtn">Upload</button>
-        <ul>
-          <li>The image should be formatted with the equirectangular projection.</li>
-          <li>The image should have an aspect ratio of 2:1 (the width must be exactly twice the height).</li>
-        </ul>
-        <p>A cubemap will be automatically generated from your image.</p>
-      </section>
-
-      <section class="settings">
-        <h2>Conversion Settings</h2>
-        <div>
-          <label>Cube Rotation: 
-            <input id="cubeRotation" type="number" min="0" max="359" value="180">°
-          </label>
-        </div>
-        <fieldset title="The resampling algorithm to use when generating the cubemap.">
-          <legend>Interpolation type</legend>
-          <label><input type="radio" name="interpolation" value="lanczos" checked> Lanczos (best quality but slower)</label>
-          <label><input type="radio" name="interpolation" value="cubic"> Cubic (sharper details)</label>
-          <label><input type="radio" name="interpolation" value="linear"> Linear (faster processing)</label>
-        </fieldset>
-        <fieldset>
-          <legend>Output format</legend>
-          <label><input type="radio" name="format" value="png" checked> PNG (lossless)</label>
-          <label><input type="radio" name="format" value="jpg"> JPEG (smaller file size)</label>
-        </fieldset>
-      </section>
-
-      <section>
-        <h2>Cubemap Output</h2>
-        <p>Click on any cube face below to download it to your computer.</p>
-        <div id="cubemap">
-          <b id="generating" style="visibility:hidden">Generating cubemap faces...</b>
-          <output id="faces"></output>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <p>
-        <span class="brand">Vayomni Cut Txt</span> - Advanced image conversion tools
-        <br>
-        <small>Based on original work by <a href="https://github.com/jaxry">Lucas Crane</a></small>
-      </p>
-    </footer>
+<!-- NAV -->
+<nav class="nav" id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Serene<span>.</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#gallery" onclick="closeNav()">Gallery</a></li>
+      <li><a href="#menu" onclick="closeNav()">Menu</a></li>
+      <li><a href="#info" onclick="closeNav()">Info</a></li>
+      <li><a href="#lokasi" onclick="closeNav()">Lokasi</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
+</nav>
 
-  <script src="main.js"></script>
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="fade-up">
+      <span class="hero-badge">☕ Coffee & Good Vibes</span>
+      <h1>Serene <span>Coffe</span></h1>
+      <p>Tempat nyaman untuk santai & ngobrol bersama teman</p>
+      <div class="hero-btns">
+        <a href="https://maps.google.com" target="_blank" class="btn btn-primary">📍 Lihat Lokasi</a>
+        <a href="https://wa.me/6281234567890" target="_blank" class="btn btn-outline">💬 Chat WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section gallery-section" id="gallery">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">Gallery</span>
+      <h2>Suasana Serene Coffe</h2>
+      <p>Nikmati suasana hangat dan nyaman di setiap sudut</p>
+    </div>
+    <div class="gallery-grid fade-up">
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&q=80" alt="Interior Serene Coffe" loading="lazy"></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&q=80" alt="Latte Art" loading="lazy"></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1559305616-3f99cd43e353?w=400&q=80" alt="Coffee Brewing" loading="lazy"></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&q=80" alt="Coffee Cup" loading="lazy"></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?w=400&q=80" alt="Cozy Corner" loading="lazy"></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400&q=80" alt="Exterior" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="section menu-section" id="menu">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">Our Menu</span>
+      <h2>Pilihan Menu Favorit</h2>
+      <p>Racikan spesial untuk menemani harimu</p>
+    </div>
+    <div class="menu-tabs fade-up">
+      <button class="menu-tab active" data-filter="all">Semua</button>
+      <button class="menu-tab" data-filter="kopi">☕ Kopi</button>
+      <button class="menu-tab" data-filter="nonkopi">🍵 Non Kopi</button>
+      <button class="menu-tab" data-filter="snack">🍞 Snack</button>
+    </div>
+    <div class="menu-grid fade-up">
+      <div class="menu-card" data-cat="kopi">
+        <div class="menu-icon">☕</div>
+        <div class="menu-info"><h3>Espresso</h3><p>Bold & rich single shot</p></div>
+        <div class="menu-price">15K</div>
+      </div>
+      <div class="menu-card" data-cat="kopi">
+        <div class="menu-icon">☕</div>
+        <div class="menu-info"><h3>Caffè Latte</h3><p>Espresso dengan susu creamy</p></div>
+        <div class="menu-price">22K</div>
+      </div>
+      <div class="menu-card" data-cat="kopi">
+        <div class="menu-icon">☕</div>
+        <div class="menu-info"><h3>Cappuccino</h3><p>Foam lembut & aroma khas</p></div>
+        <div class="menu-price">22K</div>
+      </div>
+      <div class="menu-card" data-cat="kopi">
+        <div class="menu-icon">☕</div>
+        <div class="menu-info"><h3>Americano</h3><p>Espresso dengan air panas</p></div>
+        <div class="menu-price">18K</div>
+      </div>
+      <div class="menu-card" data-cat="nonkopi">
+        <div class="menu-icon">🍵</div>
+        <div class="menu-info"><h3>Matcha Latte</h3><p>Japanese green tea latte</p></div>
+        <div class="menu-price">25K</div>
+      </div>
+      <div class="menu-card" data-cat="nonkopi">
+        <div class="menu-icon">🍫</div>
+        <div class="menu-info"><h3>Chocolate</h3><p>Rich & smooth hot chocolate</p></div>
+        <div class="menu-price">22K</div>
+      </div>
+      <div class="menu-card" data-cat="snack">
+        <div class="menu-icon">🍞</div>
+        <div class="menu-info"><h3>Roti Bakar</h3><p>Dengan selai & keju spesial</p></div>
+        <div class="menu-price">18K</div>
+      </div>
+      <div class="menu-card" data-cat="snack">
+        <div class="menu-icon">🍟</div>
+        <div class="menu-info"><h3>Kentang Goreng</h3><p>Crispy french fries</p></div>
+        <div class="menu-price">15K</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFO -->
+<section class="section info-section" id="info">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">Informasi</span>
+      <h2>Jam Buka & Lokasi</h2>
+      <p>Kami selalu siap menyambut kedatanganmu</p>
+    </div>
+    <div class="info-grid fade-up">
+      <div class="info-card">
+        <div class="icon">🕐</div>
+        <h3>Jam Operasional</h3>
+        <p>Senin – Kamis: 11:30 – 23:30<br>Jumat: 13:30 – 23:30<br>Sabtu – Minggu: 11:30 – 23:30</p>
+      </div>
+      <div class="info-card">
+        <div class="icon">📍</div>
+        <h3>Alamat</h3>
+        <p>Jln. Jendral Sudirman KM 87<br>Serene Coffe<br><a href="https://maps.google.com" target="_blank" style="color:var(--accent);font-weight:600">Buka di Google Maps →</a></p>
+      </div>
+      <div class="info-card">
+        <div class="icon">📞</div>
+        <h3>Hubungi Kami</h3>
+        <p>WhatsApp: 0812-3456-7890<br>Instagram: @serenecoffe<br><a href="https://wa.me/6281234567890" target="_blank" style="color:#25D366;font-weight:600">Chat sekarang →</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="section map-section" id="lokasi">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">Lokasi</span>
+      <h2>Temukan Kami</h2>
+      <p>Mudah dijangkau di pusat kota</p>
+    </div>
+    <div class="map-wrapper fade-up">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.8195613507864!3d-6.194741395493371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5d2e764b12d%3A0x3d2ad6e1e0e9bcc8!2sMonas!5e0!3m2!1sen!2sid!4v1680000000000!5m2!1sen!2sid" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Lokasi Serene Coffe"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container fade-up">
+    <h2>Ajak Temanmu &<br>Datang Sekarang ☕</h2>
+    <p>Suasana nyaman, kopi nikmat, dan snack lezat sudah menunggu!</p>
+    <div class="cta-btns">
+      <a href="https://maps.google.com" target="_blank" class="btn btn-white">📍 Buka Maps</a>
+      <a href="https://wa.me/6281234567890?text=Halo%20Serene%20Coffe!" target="_blank" class="btn btn-wa">💬 Chat WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>&copy; 2025 <span>Serene Coffe</span>. All rights reserved.</p>
+</footer>
+
+<!-- STICKY WA -->
+<a href="https://wa.me/6281234567890?text=Halo%20Serene%20Coffe!" target="_blank" class="sticky-wa" aria-label="Chat WhatsApp" title="Chat WhatsApp">💬</a>
+
+<script>
+// NAV TOGGLE
+const navToggle=document.getElementById('navToggle'),navLinks=document.getElementById('navLinks');
+navToggle.addEventListener('click',()=>navLinks.classList.toggle('open'));
+function closeNav(){navLinks.classList.remove('open')}
+
+// NAV SCROLL
+const nav=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>50)});
+
+// FADE IN
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})
+},{threshold:0.15});
+document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+
+// MENU FILTER
+document.querySelectorAll('.menu-tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.menu-tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    const f=tab.dataset.filter;
+    document.querySelectorAll('.menu-card').forEach(card=>{
+      card.classList.toggle('hidden',f!=='all'&&card.dataset.cat!==f);
+    });
+  });
+});
+</script>
 </body>
 </html>
